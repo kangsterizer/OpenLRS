@@ -26,18 +26,20 @@
 #define DEBUG_MODE 0
 
 //######### TRANSMISSION VARIABLES ##########
-#define CARRIER_FREQUENCY 435000  // 435Mhz startup frequency
+#define CARRIER_FREQUENCY 459000  // 459 Mhz startup frequency
 #define FREQUENCY_HOPPING 1 // 1 = Enabled  0 = Disabled
 
 //###### HOPPING CHANNELS #######
 //Select the hopping channels between 0-255
 // Default values are 13,54 and 23 for all transmitters and receivers, you should change it before your first flight for safety.
 //Frequency = CARRIER_FREQUENCY + (StepSize(60khz)* Channel_Number) 
-static unsigned char hop_list[3] = {13,54,23}; 
+//static unsigned char hop_list[3] = {13,54,23};
+//Frequency = CARRIER_FREQUENCY + (StepSize(50khz) * Channel_Number) 
+static unsigned char hop_list[3] = {10,15,25};
 
 //###### RF DEVICE ID HEADERS #######
 // Change this 4 byte values for isolating your transmission, RF module accepts only data with same header
-static unsigned char RF_Header[4] = {'O','L','R','S'};  
+static unsigned char RF_Header[4] = {'O','L','R','S'}; //***change this value from the default !!*** 
 
 //###### SERIAL PORT SPEED #######
 //#define SERIAL_BAUD_RATE 115200 //115.200 baud serial port speed

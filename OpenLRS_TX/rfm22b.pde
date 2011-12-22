@@ -193,7 +193,9 @@ void RF22B_init_parameter(void)
   
   _spi_write(0x6d, 0x07); // 7 set power max power 
   _spi_write(0x79, 0x00);    // no hopping 
-  _spi_write(0x7a, 0x06);    // 60khz step size (10khz x value) // no hopping 
+  //_spi_write(0x7a, 0x06);    // 60khz step size (10khz x value) // no hopping 
+   _spi_write(0x7a, 0x05); // 50khz step size (10khz x value) // no hopping 
+
 
   _spi_write(0x71, 0x23); // Gfsk, fd[8] =0, no invert for Tx/Rx data, fifo mode, txclk -->gpio 
   //_spi_write(0x72, 0x1F); // frequency deviation setting to 19.6khz (for 38.4kbps)
@@ -372,7 +374,8 @@ void frequency_configurator(long frequency){
   // original formulation is working with mHz values and floating numbers, I replaced them with kHz values.
   frequency = frequency / 10;
   frequency = frequency - 24000;
-  frequency = frequency - 19000; // 19 for 430–439.9 MHz band from datasheet
+ // frequency = frequency - 19000; // 19 for 430–439.9 MHz band from datasheet
+ frequency = frequency - 21000; // 21 for 450–459.9 MHz band from datasheet 
   frequency = frequency * 64; // this is the Nominal Carrier Frequency (fc) value for register setting
   
   byte byte0 = (byte) frequency;
